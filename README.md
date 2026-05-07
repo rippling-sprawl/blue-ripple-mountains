@@ -12,7 +12,7 @@ npm install
 
 # 2. Configure env
 cp .env.local.example .env.local
-# Fill in NEXT_PUBLIC_SUPABASE_ANON_KEY
+# Fill in NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, NEXT_PUBLIC_SITE_URL
 
 # 3. Apply the schema in Supabase
 # Either via the dashboard SQL editor, or:
@@ -52,10 +52,3 @@ lib/
   dates.ts, slugify.ts  Shared helpers
 supabase/migrations/    SQL migrations
 ```
-
-## Verification checklist
-
-- Sign in with `baker1797@gmail.com` and confirm `profiles.is_admin = true` on your row.
-- Add show: any signed-in user adds a show → appears with an "Unverified" badge → admin verifies at `/admin`.
-- Notes autosave: open a show on mobile, type, switch tabs mid-keystroke, return — content persisted (`navigator.sendBeacon` flushes on `pagehide`).
-- Nugs enrichment (Billy Strings only): on a Billy show, click "Import from Nugs" with a container ID → tracks populated.
