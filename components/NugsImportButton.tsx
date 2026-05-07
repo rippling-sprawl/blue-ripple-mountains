@@ -8,14 +8,16 @@ export function NugsImportButton({
   bandId,
   bandSlug,
   showSlug,
+  defaultContainerId = "",
 }: {
   showId: string;
   bandId: string;
   bandSlug: string;
   showSlug: string;
+  defaultContainerId?: string;
 }) {
   const [open, setOpen] = useState(false);
-  const [containerId, setContainerId] = useState("");
+  const [containerId, setContainerId] = useState(defaultContainerId);
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);

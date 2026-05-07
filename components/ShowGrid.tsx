@@ -9,7 +9,7 @@ export function ShowGrid({
   bandSlug,
 }: {
   shows: ShowWithBands[];
-  bandSlug: string;
+  bandSlug?: string;
 }) {
   const [query, setQuery] = useState("");
   const [year, setYear] = useState("all");
@@ -150,7 +150,7 @@ function Section({
   );
 }
 
-function Tiles({ shows, bandSlug }: { shows: ShowWithBands[]; bandSlug: string }) {
+function Tiles({ shows, bandSlug }: { shows: ShowWithBands[]; bandSlug?: string }) {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
       {shows.map((s) => (

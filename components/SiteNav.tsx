@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { SignOutButton } from "./SignOutButton";
@@ -11,8 +12,14 @@ export async function SiteNav() {
   return (
     <header className="border-b border-line bg-bg-surface/60 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
-        <Link href="/" className="text-lg font-semibold tracking-tight">
-          <span className="text-accent">▲</span>{" "}
+        <Link href="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight">
+          <Image
+            src="/images/blue_ridge_mountains.png"
+            alt=""
+            width={24}
+            height={24}
+            className="h-6 w-6"
+          />
           <span>Blue Ripple Mountains</span>
         </Link>
         <nav className="flex items-center gap-4 text-sm text-ink-muted">

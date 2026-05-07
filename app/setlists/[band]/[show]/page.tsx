@@ -139,6 +139,11 @@ export default async function ShowPage({
                 bandId={bandRow.id}
                 bandSlug={band}
                 showSlug={show}
+                defaultContainerId={
+                  links
+                    .find((l) => l.kind === "nugs")
+                    ?.url.match(/\/release\/(\d+)/)?.[1] ?? ""
+                }
               />
             )}
             <SetlistEditor
