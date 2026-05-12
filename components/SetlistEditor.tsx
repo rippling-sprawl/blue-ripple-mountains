@@ -51,6 +51,7 @@ export function SetlistEditor({
   showSlug,
   initial,
   signedIn,
+  triggerLabel = "Edit setlist",
 }: {
   showId: string;
   bandId: string;
@@ -58,6 +59,7 @@ export function SetlistEditor({
   showSlug: string;
   initial: Song[];
   signedIn: boolean;
+  triggerLabel?: string;
 }) {
   const [editing, setEditing] = useState(false);
   const [songs, setSongs] = useState<EditableSong[]>(fromRows(initial));
@@ -71,7 +73,7 @@ export function SetlistEditor({
         onClick={() => setEditing(true)}
         className="rounded-md border border-line px-3 py-1.5 text-sm text-ink-muted hover:text-ink"
       >
-        Edit setlist
+        {triggerLabel}
       </button>
     );
   }

@@ -152,7 +152,7 @@ export default async function ShowPage({
               bandSlug={band}
               showSlug={show}
               initial={songs}
-              signedIn={!!user}
+              signedIn={!!user && !isAdmin}
             />
           </div>
         </div>
@@ -214,6 +214,23 @@ export default async function ShowPage({
           </ul>
         )}
       </section>
+
+      {isAdmin && (
+        <section className="space-y-3 border-t border-line pt-6">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
+            Admin
+          </h2>
+          <SetlistEditor
+            showId={showRow.id}
+            bandId={bandRow.id}
+            bandSlug={band}
+            showSlug={show}
+            initial={songs}
+            signedIn
+            triggerLabel="Admin edit"
+          />
+        </section>
+      )}
     </div>
   );
 }

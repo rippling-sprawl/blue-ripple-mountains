@@ -24,21 +24,25 @@ export function FriendTagger({
 
   if (!signedIn) return null;
 
+  const persist = (next: Tag[]) =>
+    startTransition(async () => {
+      await setFriendTagsAction({ showId, bandSlug, showSlug, tags: next });
+    });
+
   const add = () => {
     const v = draft.trim();
     if (!v) return;
-    setTags((curr) => [...curr, { display_name: v }]);
+    const next = [...tags, { display_name: v }];
+    setTags(next);
     setDraft("");
+    persist(next);
   };
 
-  const remove = (i: number) => setTags((curr) => curr.filter((_, ix) => ix !== i));
-
-  const save = () =>
-    startTransition(async () => {
-      await setFriendTagsAction({ showId, bandSlug, showSlug, tags });
-    });
-
-  const dirty = JSON.stringify(tags) !== JSON.stringify(initial);
+  const remove = (i: number) => {
+    const next = tags.filter((_, ix) => ix !== i);
+    setTags(next);
+    persist(next);
+  };
 
   return (
     <div className="space-y-2">
@@ -75,17 +79,10 @@ export function FriendTagger({
         <button
           type="button"
           onClick={add}
-          className="rounded-md border border-line px-3 py-1.5 text-sm text-ink-muted hover:text-ink"
+          disabled={isPending || !draft.trim()}
+          className="rounded-md border border-line px-3 py-1.5 text-sm text-ink-muted hover:text-ink disabled:opacity-60"
         >
           Add
-        </button>
-        <button
-          type="button"
-          onClick={save}
-          disabled={!dirty || isPending}
-          className="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-bg-base hover:bg-accent-muted disabled:opacity-60"
-        >
-          {isPending ? "Saving…" : "Save"}
         </button>
       </div>
     </div>

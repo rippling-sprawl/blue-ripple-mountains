@@ -10,9 +10,7 @@ export async function sendMagicLink(formData: FormData) {
   if (!email) redirect("/login?error=Missing+email");
 
   const h = await headers();
-  const origin =
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    `${h.get("x-forwarded-proto") ?? "http"}://${h.get("host")}`;
+  const origin = `${h.get("x-forwarded-proto") ?? "http"}://${h.get("host")}`;
 
   const callback = new URL("/auth/callback", origin);
   if (next) callback.searchParams.set("next", next);
